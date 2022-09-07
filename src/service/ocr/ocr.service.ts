@@ -3,7 +3,7 @@ import * as Tesseract from 'tesseract.js';
 
 export default class Ocr {
     static async getTextFromImage(imagePath: string): Promise<string> {
-        const nodeImagePath = path.resolve(__dirname, imagePath) //'../../assets/edited-image.png');
+        const nodeImagePath = path.resolve(imagePath);
     
         const worker = Tesseract.createWorker();
         await worker.load();

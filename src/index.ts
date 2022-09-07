@@ -1,8 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import { Readable} from 'stream'
-import Jimp from 'jimp';
-import Wundernutcracker from './service/wundernutcracker.service';
+import ImageService from './service/image/image.service';
+import Ocr from './service/ocr/ocr.service';
 
 /**
  * TODO: 
@@ -11,9 +8,11 @@ import Wundernutcracker from './service/wundernutcracker.service';
 
 
 const decodeTheWunderNut = async () => {
-    const cracker = new Wundernutcracker('../assets/parchment.png')
+    const imageService = new ImageService('./src/assets/parchment.png')
+    const editedImagePath = await imageService.processImage();
 
-    await cracker.solveTheMystery();
+    const textFromImage = await Ocr.getTextFromImage(editedImagePath)
+    console.log('textFromImage', textFromImage);
 }
 
 decodeTheWunderNut();

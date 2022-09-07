@@ -2,23 +2,18 @@ import fs from 'fs';
 import { unlink } from 'node:fs/promises';
 import path from 'path';
 import Jimp from 'jimp';
-import * as Tesseract from 'tesseract.js';
 
-import Ocr from './ocr/ocr.service'
+export default class ImageService {
+  private editedImagePath = './src/assets/edited-image.png';
 
-export default class Wundernutcracker {
-  constructor(public path: string) {}
+  constructor(private imagePath: string) {}
 
   private async readImage() {
-    return await Jimp.read(fs.readFileSync(path.join(__dirname, this.path)));
+    return await Jimp.read(fs.readFileSync(path.join(this.imagePath)));
   }
 
   private async saveImage(image: any) {
-    await image.writeAsync(path.join(__dirname, '../assets/edited-image.png'));
-  }
-
-  private async deleteWorkImage() {
-    await unlink(path.join(__dirname, '../assets/edited-image.png'));
+    await image.writeAsync(path.join(this.editedImagePath));
   }
 
   private async increaseContrast(image: any): Promise<void> {
@@ -26,8 +21,7 @@ export default class Wundernutcracker {
     const height = image.getHeight();
 
     const WHITE = Jimp.rgbaToInt(255, 255, 255, 255);
-    const BLACK = Jimp.rgbaToInt(0, 0, 0, 255); 
-
+    const BLACK = Jimp.rgbaToInt(0, 0, 0, 255);
 
     for (let y = 0; y <= height; y++) {
       for (let x = 0; x <= width; x++) {
@@ -43,14 +37,13 @@ export default class Wundernutcracker {
     await this.saveImage(image);
   }
 
-
-
-  async solveTheMystery() {
+  public async processImage(): Promise<string> {
     const image = await this.readImage();
-
     await this.increaseContrast(image);
-    const text = await Ocr.getTextFromImage('../../assets/edited-image.png')
-    console.log('text', text);
-    
+    return this.editedImagePath;
+  }
+
+  public async deleteWorkImage() {
+    await unlink(path.join(this.editedImagePath));
   }
 }
