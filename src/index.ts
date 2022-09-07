@@ -13,6 +13,8 @@ const decodeTheWunderNut = async () => {
 
     const textFromImage = await Ocr.getTextFromImage(editedImagePath)
     console.log('textFromImage', textFromImage);
+
+    await imageService.deleteWorkImage()
 }
 
 decodeTheWunderNut();
