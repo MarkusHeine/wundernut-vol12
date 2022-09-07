@@ -4,6 +4,8 @@ import path from 'path';
 import Jimp from 'jimp';
 import * as Tesseract from 'tesseract.js';
 
+import Ocr from './ocr/ocr.service'
+
 export default class Wundernutcracker {
   constructor(public path: string) {}
 
@@ -41,29 +43,14 @@ export default class Wundernutcracker {
     await this.saveImage(image);
   }
 
-  private async getTextFromImage(): Promise<void> {
-    const imagePath = path.resolve(__dirname, '../assets/edited-image.png');
 
-    const worker = Tesseract.createWorker({
-      // logger: m => console.log(m), // Add logger here
-    });
-    // tesseract.setVariable("preserve_interword_spaces", "1")
-    await worker.load();
-    await worker.loadLanguage('eng');
-    await worker.initialize('eng');
-      await worker.setParameters({preserve_interword_spaces: "1"})
-    const { data } = await worker.recognize(imagePath);
-    console.log('data', data);
-    console.log('text', data.text);
-    await worker.terminate();
-
-    // await this.deleteWorkImage();
-  }
 
   async solveTheMystery() {
     const image = await this.readImage();
 
     await this.increaseContrast(image);
-    await this.getTextFromImage();
+    const text = await Ocr.getTextFromImage('../../assets/edited-image.png')
+    console.log('text', text);
+    
   }
 }
