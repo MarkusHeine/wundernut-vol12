@@ -4,9 +4,9 @@ import path from 'path';
 import Jimp from 'jimp';
 
 export default class ImageService {
-    private editedImagePath = './src/assets/edited-image.png';
-    private white = Jimp.rgbaToInt(255, 255, 255, 255);
-    private black = Jimp.rgbaToInt(0, 0, 0, 255);
+  private editedImagePath = './src/assets/edited-image.png';
+  private white = Jimp.rgbaToInt(255, 255, 255, 255);
+  private black = Jimp.rgbaToInt(0, 0, 0, 255);
 
   constructor(private imagePath: string) {}
 
