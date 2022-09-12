@@ -3,7 +3,7 @@ import ImageService from './image.service';
 import fs from 'fs';
 
 describe('Image Service should work correcty', () => {
-  const imageService = new ImageService('./src/assets/test-image.png');
+  const imageService = new ImageService('./src/service/image/test-image.png');
 
   it('Image service is correctly instantiated', () => {
     expect(imageService).toBeInstanceOf(ImageService);
