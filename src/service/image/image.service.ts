@@ -1,5 +1,4 @@
-import fs from 'fs';
-import { unlink } from 'node:fs/promises';
+import { unlink, readFile } from 'node:fs/promises';
 import path from 'path';
 import Jimp from 'jimp';
 
@@ -10,8 +9,9 @@ export default class ImageService {
 
   constructor(private imagePath: string) {}
 
-  private async readImage() {
-    return await Jimp.read(fs.readFileSync(path.join(this.imagePath)));
+  private async readImage(): Promise<any> {
+    const file = await readFile(path.join(this.imagePath));
+    return await Jimp.read(file);
   }
 
   private async saveImage(image: any) {
