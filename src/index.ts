@@ -1,6 +1,7 @@
 import ImageService from './service/image/image.service';
 import Ocr from './service/ocr/ocr.service';
 
+
 /**
  * TODO: 
  *  - Correct Typing for image in Wundernutcracker class

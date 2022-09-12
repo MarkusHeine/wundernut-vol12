@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "jimp": "^0.16.1",
+    "openai": "^3.0.0",
     "tesseract.js": "^3.0.2"
   }
 }
