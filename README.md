@@ -12,6 +12,7 @@
 ## About The Project
 
 A little coding challenge from the Wunderdogs where you have do decrypt a message to learn some wild new spells.
+Check the challenge [here](https://www.wunderdog.fi/wundernut)
 
 <!-- GETTING STARTED -->
 ## Getting Started
