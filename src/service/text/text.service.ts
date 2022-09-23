@@ -13,8 +13,8 @@ export default class TextService {
     async processText(text: string): Promise<string> {
         const response = await this.openAi.createCompletion({
             model: "text-davinci-002",
-            prompt: text,
-            temperature: 0,
+            prompt: `Correct the following text and return it with line breaks: ${text}`,
+            temperature: 0.53,
             max_tokens: 300,
         });
 
