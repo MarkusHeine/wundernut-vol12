@@ -38,3 +38,5 @@ Check the challenge [here](https://www.wunderdog.fi/wundernut)
     ```sh
     yarn test
     ```
+## What is left to do?
+The ki sometimes talks a little nonsense. Here you still have to find out the right settings. You may also be able to use a different model.

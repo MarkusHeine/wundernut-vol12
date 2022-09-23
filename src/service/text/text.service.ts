@@ -14,7 +14,7 @@ export default class TextService {
     const response = await this.openAi.createCompletion({
       model: 'text-davinci-002',
       prompt: `Correct the following text and return it with line breaks: ${text}`,
-      temperature: 0.53,
+      temperature: 0.8,
       max_tokens: 300,
     });
 
