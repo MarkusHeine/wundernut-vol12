@@ -4,17 +4,19 @@ import Jimp from 'jimp';
 
 export default class ImageService {
   private editedImagePath = './src/assets/edited-image.png';
+
   private white = Jimp.rgbaToInt(255, 255, 255, 255);
+
   private black = Jimp.rgbaToInt(0, 0, 0, 255);
 
   constructor(private imagePath: string) {}
 
   private async readImage(): Promise<any> {
     const file = await readFile(path.join(this.imagePath));
-    return await Jimp.read(file);
+    return Jimp.read(file);
   }
 
-  private async saveImage(image: any) {
+  private async saveImage(image: any): Promise<void> {
     await image.writeAsync(path.join(this.editedImagePath));
   }
 
