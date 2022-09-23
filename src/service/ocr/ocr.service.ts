@@ -9,7 +9,7 @@ export default class Ocr {
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
-          await worker.setParameters({preserve_interword_spaces: "1"})
+        await worker.setParameters({preserve_interword_spaces: "1"})
         const { data } = await worker.recognize(nodeImagePath);
         await worker.terminate();
 
